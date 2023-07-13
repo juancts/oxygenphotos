@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/oxygenphotos/static/css/main.bc82f8d7.css",
+    "main.js": "/oxygenphotos/static/js/main.0af678bc.js",
+    "index.html": "/oxygenphotos/index.html",
+    "main.bc82f8d7.css.map": "/oxygenphotos/static/css/main.bc82f8d7.css.map",
+    "main.0af678bc.js.map": "/oxygenphotos/static/js/main.0af678bc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bc82f8d7.css",
+    "static/js/main.0af678bc.js"
+  ]
+}
