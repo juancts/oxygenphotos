@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { baseURL } from "../../utils/url&ports";
 
 const initialState = {
   allPhotos: [],
@@ -8,7 +9,7 @@ const initialState = {
 
 export const fetchPhotos = createAsyncThunk("photos/fetchPhotos", async () => {
   try {
-    const response = await axios("http://localhost:3001/photos")
+    const response = await axios(`${baseURL}/photos`)
     return response.data;
   } catch (error) {
     throw new Error("Error loading photos: " + error.message);
@@ -19,7 +20,7 @@ export const searchPhotos = createAsyncThunk(
   "photos/searchPhotos",
   async (search) => {
     try {
-      const response = await axios("http://localhost:3001/photos/search/?query=" + search)
+      const response = await axios(`${baseURL}/photos/search/?query=` + search)
       return response.data;
     } catch (error) {
       throw new Error("Error searching photos:" + error.message);
