@@ -5,15 +5,13 @@ import { useLocation } from "react-router-dom";
 import styles from "./Cards.module.css";
 import { BsFillCaretRightFill, BsFillCaretLeftFill } from "react-icons/bs";
 import { Box, Grid, ImageListItem } from "@mui/material";
+import Favorites from "../../views/Favorites/Favorites";
 
 function Cards() {
   const photos = useSelector((photos) => photos.photos.allPhotos);
-  const favorites = useSelector((photos) => photos.photos.favorites);
   const location = useLocation();
 
-  console.log("FAVORITES", favorites);
-  console.log(location);
-
+  
   return (
     <Box sx={{margin:"25px"}}>
 
@@ -43,27 +41,14 @@ function Cards() {
                     description={e.description}
                     photo={e.photo}
                     location={location}
+                    
                   />
                 </ImageListItem>
               </Grid>
             ))
-          : favorites.map((e, i) => (
-              <Grid item xs={2} sm={4} md={4} key={i}>
-                <ImageListItem>
-                <Card
-                  id={e.id}
-                  key={e.id}
-                  index={i}
-                  height={e.height}
-                  width={e.width}
-                  description={e.description}
-                  photo={e.photo}
-                  location={location}
-                />
-
-                </ImageListItem>
-              </Grid>
-            ))}
+          :            
+            <Favorites />
+            }
       </Grid>
       <div className={styles.sigant}>
         <i className={styles.icon}>

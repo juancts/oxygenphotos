@@ -18,7 +18,9 @@ const getphotos = async () => {
         width: e.width,
         height: e.height,
         description: e.description,
-        photo: e.urls.regular
+        photo: e.urls.regular,
+        likes: e.likes,
+        added: e.created_at
     }
   })
   return allPhotosResult;
@@ -40,7 +42,9 @@ const searchphotos = async (search) => {
         width: e.width,
         height: e.height,
         description: e.description,
-        photo: e.urls.regular
+        photo: e.urls.regular,
+        likes: e.likes,
+        added: e.created_at
     }
   })
 
