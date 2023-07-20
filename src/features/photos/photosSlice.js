@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { baseURL } from "../../utils/url&ports";
+import { baseURL, photos_access_key } from "../../utils/url&ports";
 
 const initialState = {
   allPhotos: [],
@@ -9,8 +9,26 @@ const initialState = {
 
 export const fetchPhotos = createAsyncThunk("photos/fetchPhotos", async () => {
   try {
-    const response = await axios(`${baseURL}/photos`)
-    return response.data;
+    let allPhotos = [];
+    const url = `https://api.unsplash.com/photos/?client_id=${photos_access_key}`;
+    allPhotos = await axios(url).then((res) => {
+      return res.data;
+    });
+    const allPhotosResult = allPhotos.map((e, i)=>{
+      return {
+          index: i,
+          id: e.id,
+          width: e.width,
+          height: e.height,
+          description: e.description,
+          photo: e.urls.regular,
+          likes: e.likes,
+          added: e.created_at
+      }
+    })
+    return allPhotosResult;
+    //const response = await axios(`${baseURL}/photos`)
+    //return response.data;
   } catch (error) {
     throw new Error("Error loading photos: " + error.message);
   }
