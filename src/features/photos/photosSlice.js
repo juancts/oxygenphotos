@@ -30,7 +30,7 @@ export const fetchPhotos = createAsyncThunk("photos/fetchPhotos", async () => {
     //const response = await axios(`${baseURL}/photos`)
     //return response.data;
   } catch (error) {
-    throw new Error("Error loading photos: " + error.message);
+    throw new Error("Error lpm: " + error.message);
   }
 });
 
