@@ -13,13 +13,14 @@ function App() {
   return (
     
     <div>
-      {location.pathname !== "/" && (
+      {/* {location.pathname !== "/" && ( */}
       <>
         <NavBar /> 
         <SearchBar />
-      </>)}
+      </>
+      {/* )} */}
       <Routes>
-      <Route exact path="/" element={<LandingPage />} />
+      <Route exact path="/" element={<Home />} />
       <Route exact path="/home" element={<Home />} />
       <Route exact path="/favorites" element={<Favorites />} />
       <Route exact path="/about" element={<About />} />
