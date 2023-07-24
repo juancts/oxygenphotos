@@ -5,6 +5,7 @@ import {
   addToFavorites,
   deleteFavorites,
 } from "../../features/photos/favoriteSlice";
+import { ImageListItem } from "@mui/material";
 
 function Card(props) {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function Card(props) {
   return (
     <div>
       <div className={styles.container}>
+      <ImageListItem key={props.id}>
         <i
           id="heart"
           onClick={handleClick}
@@ -34,11 +36,18 @@ function Card(props) {
         >
           <BsFillHeartFill />
         </i>
+        
         <img
-          style={{ width: 300, height: 300 }}
-          src={props.photo}
-          alt={props.index}
+        src={`${props.photo}?w=248&fit=crop&auto=format`}
+        srcSet={`${props.photo}?w=248&fit=crop&auto=format&dpr=2 2x`}
+        alt={props.description}
+        loading="lazy"
+          // style={{ width: 300, height: 300 }}
+          // src={props.photo}
+          // alt={props.index}
         />
+
+        </ImageListItem>
       </div>
     </div>
   );

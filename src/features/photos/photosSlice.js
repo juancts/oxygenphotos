@@ -10,7 +10,7 @@ const initialState = {
 export const fetchPhotos = createAsyncThunk("photos/fetchPhotos", async () => {
   try {
     let allPhotos = [];
-    const url = `https://api.unsplash.com/photos/?client_id=${photos_access_key}`;
+    const url = `https://api.unsplash.com/photos?per_page=12&client_id=${photos_access_key}`;
     allPhotos = await axios(url).then((res) => {
       return res.data;
     });
@@ -39,7 +39,7 @@ export const searchPhotos = createAsyncThunk(
   async (search) => {
     try {
       let result = [];
-      const url= `https://api.unsplash.com/search/photos?page=1&query=${search}&client_id=${photos_access_key}`;
+      const url= `https://api.unsplash.com/search/photos?per_page=12&query=${search}&client_id=${photos_access_key}`;
       console.log(url)
       result = await axios(url).then((res)=>{
        return res.data.results;

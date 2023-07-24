@@ -4,7 +4,7 @@ import Card from "../Card/Card";
 import { useLocation } from "react-router-dom";
 import styles from "./Cards.module.css";
 import { BsFillCaretRightFill, BsFillCaretLeftFill } from "react-icons/bs";
-import { Box, Grid, ImageListItem } from "@mui/material";
+import { Box, Grid, ImageList, ImageListItem } from "@mui/material";
 import Favorites from "../../views/Favorites/Favorites";
 
 function Cards() {
@@ -22,34 +22,55 @@ function Cards() {
         </i>
       </div>
 
-      <Grid
+      {/* <Grid
         
         container
         spacing={{ xs: 2, md: 3 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
-      >
+      > */}
+  
         {location.pathname !== "/favorites"
-          ? photos.map((e, i) => (
-              <Grid item xs={2} sm={4} md={4} key={i}>
-                <ImageListItem>
-                  <Card
-                    id={e.id}
-                    key={e.id}
-                    index={i}
-                    height={e.height}
-                    width={e.width}
-                    description={e.description}
-                    photo={e.photo}
-                    location={location}
+          ? 
+         <ImageList variant="masonry" cols={3} gap={8}> 
+          {photos.map((e, i) => (
+     
+            <ImageListItem key={e.id}>
+      <Card
+              id={e.id}
+              key={e.id}
+              index={i}
+              height={e.height}
+              width={e.width}
+              description={e.description}
+              photo={e.photo}
+              location={location}
+      />
+    </ImageListItem>
+  ))}
+</ImageList>
+              // <Grid item xs={2} sm={4} md={4} key={i}>
+              //   <ImageListItem>
+              //     <Card
+              //       id={e.id}
+              //       key={e.id}
+              //       index={i}
+              //       height={e.height}
+              //       width={e.width}
+              //       description={e.description}
+              //       photo={e.photo}
+              //       location={location}
                     
-                  />
-                </ImageListItem>
-              </Grid>
-            ))
+              //     />
+              //   </ImageListItem>
+              // </Grid>
+
+
+
+            
           :            
             <Favorites />
             }
-      </Grid>
+      {/* </Grid> */}
       <div className={styles.sigant}>
         <i className={styles.icon}>
           <BsFillCaretRightFill />
