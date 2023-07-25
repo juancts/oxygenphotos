@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import { updateFavorite } from '../../features/photos/favoriteSlice.js';
+import styles from "./Favorites.module.css";
 
 
 function Favorites() {
@@ -54,11 +55,12 @@ const handleModalClose = () => {
 
   return (
     
-    <div style={{display:"flex", flexDirection:"column"}}>
-      <p>favorites</p>
+    <div className={styles.container}>
+      
       {favorites && favorites.map((e, i) => (
         
-      <div style = {{display:"flex", flexDirection:"row", border:"solid", justifyContent:"space-evenly"}}>
+      <div className = {styles.cards}>
+        <div>
       <Card
       id={e.id}
       key={e.id}
@@ -69,7 +71,9 @@ const handleModalClose = () => {
       photo={e.photo}
       location={location}
       />
-      <div style={{display:"flex", flexDirection:"column"}}>
+
+        </div>
+      <div >
       <input style={{display:"inline-block"}} type="text" placeholder={e.description}/>
       <button onClick={() => handleEditButtonClick(e.id, e.description)}>edit</button>
       <p>Width: {e.width}</p>

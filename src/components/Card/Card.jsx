@@ -24,8 +24,10 @@ function Card(props) {
   };
 
   return (
-    <div>
-      <div className={styles.container}>
+  <>
+  
+      {location !== "/favorites" ?
+        <div className={styles.container}>
       <ImageListItem key={props.id}>
         <i
           id="heart"
@@ -42,14 +44,42 @@ function Card(props) {
         srcSet={`${props.photo}?w=248&fit=crop&auto=format&dpr=2 2x`}
         alt={props.description}
         loading="lazy"
-          // style={{ width: 300, height: 300 }}
-          // src={props.photo}
-          // alt={props.index}
         />
 
         </ImageListItem>
+        </div>
+        :        
+      <div>
+          
+            
+          <ImageListItem  key={props.id}>
+        <i
+          id="heart"
+          onClick={handleClick}
+          className={`${styles.hicon} ${
+            isFavorite || location === "/favorites" ? styles.favorite : ""
+          }`}
+        >
+          <BsFillHeartFill />
+        </i>
+        
+        <img
+        style={{width:"300px", height:"300px"}}
+        src={`${props.photo}?w=248&fit=crop&auto=format`}
+        srcSet={`${props.photo}?w=248&fit=crop&auto=format&dpr=2 2x`}
+        alt={props.description}
+        loading="lazy"
+        />
+
+        </ImageListItem>
+        
+         
       </div>
-    </div>
+
+
+      }
+      
+      </>
   );
 }
 

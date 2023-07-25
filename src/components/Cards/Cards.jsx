@@ -33,8 +33,7 @@ function Cards() {
           ? 
          <ImageList variant="masonry" cols={3} gap={8}> 
           {photos.map((e, i) => (
-     
-            <ImageListItem key={e.id}>
+                 
       <Card
               id={e.id}
               key={e.id}
@@ -45,28 +44,9 @@ function Cards() {
               photo={e.photo}
               location={location}
       />
-    </ImageListItem>
   ))}
 </ImageList>
-              // <Grid item xs={2} sm={4} md={4} key={i}>
-              //   <ImageListItem>
-              //     <Card
-              //       id={e.id}
-              //       key={e.id}
-              //       index={i}
-              //       height={e.height}
-              //       width={e.width}
-              //       description={e.description}
-              //       photo={e.photo}
-              //       location={location}
-                    
-              //     />
-              //   </ImageListItem>
-              // </Grid>
-
-
-
-            
+                         
           :            
             <Favorites />
             }
