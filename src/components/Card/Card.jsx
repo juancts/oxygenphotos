@@ -1,19 +1,19 @@
-import { BsFillHeartFill } from "react-icons/bs";
+import { BsFillHeartFill, BsDownload, BsDisplay } from "react-icons/bs";
 import styles from "./Card.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToFavorites,
   deleteFavorites,
 } from "../../features/photos/favoriteSlice";
-import { ImageListItem } from "@mui/material";
+import { ImageListItem, Tooltip } from "@mui/material";
 
 function Card(props) {
   const dispatch = useDispatch();
-  const allPhotos = useSelector((state)=>state.photos.allPhotos);
+  const allPhotos = useSelector((state) => state.photos.allPhotos);
   const favorites = useSelector((state) => state.favorites.favorites);
   const isFavorite = favorites.some((photo) => photo.id === props.id);
   const location = props.location.pathname;
-  console.log(location)
+  console.log("FURST LOCATION::", location);
 
   const handleClick = () => {
     if (isFavorite) {
@@ -24,62 +24,63 @@ function Card(props) {
   };
 
   return (
-  <>
-  
-      {location !== "/favorites" ?
+    <>
+      {console.log("second:", location)}
+      {location !== "/favorites" ? (
         <div className={styles.container}>
-      <ImageListItem key={props.id}>
-        <i
-          id="heart"
-          onClick={handleClick}
-          className={`${styles.hicon} ${
-            isFavorite || location === "/favorites" ? styles.favorite : ""
-          }`}
-        >
-          <BsFillHeartFill />
-        </i>
-        
-        <img
-        src={`${props.photo}?w=248&fit=crop&auto=format`}
-        srcSet={`${props.photo}?w=248&fit=crop&auto=format&dpr=2 2x`}
-        alt={props.description}
-        loading="lazy"
-        />
+          <ImageListItem key={props.id}>
+            <Tooltip title="Favorites">
+              <i
+                id="heart"
+                onClick={handleClick}
+                className={`${styles.hicon} ${
+                  isFavorite || location === "/favorites" ? styles.favorite : ""
+                }`}
+              >
+                <BsFillHeartFill />
+              </i>
+            </Tooltip>
 
-        </ImageListItem>
+            <img
+              src={`${props.photo}?w=248&fit=crop&auto=format`}
+              srcSet={`${props.photo}?w=248&fit=crop&auto=format&dpr=2 2x`}
+              alt={props.description}
+              loading="lazy"
+            />
+          </ImageListItem>
         </div>
-        :        
-      <div>
-          
-            
-          <ImageListItem  key={props.id}>
-        <i
-          id="heart"
-          onClick={handleClick}
-          className={`${styles.hicon} ${
-            isFavorite || location === "/favorites" ? styles.favorite : ""
-          }`}
-        >
-          <BsFillHeartFill />
-        </i>
-        
-        <img
-        style={{width:"300px", height:"300px"}}
-        src={`${props.photo}?w=248&fit=crop&auto=format`}
-        srcSet={`${props.photo}?w=248&fit=crop&auto=format&dpr=2 2x`}
-        alt={props.description}
-        loading="lazy"
-        />
-
-        </ImageListItem>
-        
-         
-      </div>
-
-
-      }
-      
-      </>
+      ) : (
+        <div>
+          <ImageListItem key={props.id}>
+            <Tooltip title="Remove from favorites">
+              <i
+                id="heart"
+                onClick={handleClick}
+                className={`${styles.hicon} ${
+                  isFavorite || location === "/favorites" ? styles.favorite : ""
+                }`}
+              >
+                <BsFillHeartFill />
+              </i>
+            </Tooltip>
+            {isFavorite && location === "/favorites" && (
+              <Tooltip title="Download">
+                <i id="download" className={styles.dicon}>
+                  <BsDownload />
+                </i>
+              </Tooltip>
+            )}
+            <img
+              style={{ width: "300px", height: "300px" }}
+              src={`${props.photo}?w=248&fit=crop&auto=format`}
+              srcSet={`${props.photo}?w=248&fit=crop&auto=format&dpr=2 2x`}
+              alt={props.description}
+              loading="lazy"
+            />
+          </ImageListItem>
+        </div>
+      )}
+    </>
   );
 }
 

@@ -13,6 +13,23 @@
    
 }
 
+.dicon{
+    position: absolute;
+    top: 40px;
+    left: 90%;
+    color: white;
+    font-size: 25px;
+}
+
+.download{
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 90%;
+    color: white;
+    font-size: 25px;
+}
+
 .favorite{
     color: red;
 }

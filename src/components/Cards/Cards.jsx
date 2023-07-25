@@ -22,16 +22,10 @@ function Cards() {
         </i>
       </div>
 
-      {/* <Grid
-        
-        container
-        spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 4, sm: 8, md: 12 }}
-      > */}
-  
+      
         {location.pathname !== "/favorites"
           ? 
-         <ImageList variant="masonry" cols={3} gap={8}> 
+         <ImageList variant="masonry" cols={4} gap={8}> 
           {photos.map((e, i) => (
                  
       <Card
