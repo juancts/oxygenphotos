@@ -25,7 +25,7 @@ function Footer() {
         flexGrow: 1,
         bottom: 0,
         width:"100%",
-        padding: "10px 0px",
+        padding: "30px 0px",
         color: "white",
         backgroundColor: "black",
       }}
@@ -34,8 +34,10 @@ function Footer() {
         sx={{
           display: "flex",
           flexDirection: "row",
+          width:"80%",
           justifyContent: "space-between",
-          border: "solid white 1px",
+          borderTop: "solid white 1px",
+          paddingTop:"5px",
         }}
       >
         <Typography>
