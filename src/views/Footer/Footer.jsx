@@ -13,8 +13,7 @@ function Footer() {
   const favorites = useSelector((state)=>state.favorites.favorites)
   const location = useLocation();
   const isFavoritesEmpty = !favorites || favorites.length === 0;
-  console.log(favorites);
-  console.log(location)
+ 
 
 
 
