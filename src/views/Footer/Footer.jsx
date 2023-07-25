@@ -3,14 +3,30 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 import styles from "./Footer.module.css";
 import { BsFillEnvelopeAtFill, BsLinkedin, BsInstagram } from "react-icons/bs";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+
+
+
 
 function Footer() {
+
+  const favorites = useSelector((state)=>state.favorites.favorites)
+  const location = useLocation();
+  const isFavoritesEmpty = !favorites || favorites.length === 0;
+  console.log(favorites);
+  console.log(location)
+
+
+
   return (
     <Box
+      
       sx={{
+        position: isFavoritesEmpty && location.pathname === "/favorites" ? "fixed" : "relative",
         flexGrow: 1,
-        padding: "5%",
         bottom: 0,
+        width:"100%",
+        padding: "10px 0px",
         color: "white",
         backgroundColor: "black",
       }}
@@ -18,10 +34,9 @@ function Footer() {
       <Container
         sx={{
           display: "flex",
-          padding: "5%",
           flexDirection: "row",
           justifyContent: "space-between",
-          borderTop: "solid white 1px",
+          border: "solid white 1px",
         }}
       >
         <Typography>

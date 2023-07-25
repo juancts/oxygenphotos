@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { Home, Favorites, About, LandingPage, Footer } from "./views";
 import { NavBar, SearchBar } from "./components";
 import { useSelector } from "react-redux";
+import "./App.css"
 
 function App() {
   let photos = useSelector(state=>state.photos)
@@ -28,8 +29,6 @@ function App() {
       </Routes>      
       <Footer />
     </>
-   
-    
   );
 }
 
