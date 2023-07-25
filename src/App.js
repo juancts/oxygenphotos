@@ -12,12 +12,12 @@ function App() {
 
   return (
     
-    <div>
+    <>
       {/* {location.pathname !== "/" && ( */}
-      <>
+      
         <NavBar /> 
         <SearchBar />
-      </>
+        
       {/* )} */}
       <Routes>
       <Route exact path="/" element={<Home />} />
@@ -27,9 +27,8 @@ function App() {
       
       </Routes>      
       <Footer />
-    </div>
-
-    
+    </>
+   
     
   );
 }

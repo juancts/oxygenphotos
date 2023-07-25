@@ -57,7 +57,17 @@ const handleModalClose = () => {
     
     <div className={styles.container}>
       
-      {favorites && favorites.map((e, i) => (
+      
+      {!favorites || favorites.length ===0 ? 
+      (<div style={{textAlign:"center"}}>
+        <p>
+          NO PHOTOS ADDED PLEASE ADD FAVORITES PHOTOS
+          </p>
+      
+      </div>)
+      
+      
+      : (favorites && favorites.map((e, i) => (
         
       <div className = {styles.cards}>
         <div>
@@ -83,7 +93,8 @@ const handleModalClose = () => {
 
       </div>
        </div>
-      ))}
+    ))
+    )}
        <Modal
         open={open}
         onClose={handleModalClose}
