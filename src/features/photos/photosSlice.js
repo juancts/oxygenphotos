@@ -38,12 +38,17 @@ export const searchPhotos = createAsyncThunk(
   "photos/searchPhotos",
   async (search) => {
     try {
-      let result = [];
       const url= `https://api.unsplash.com/search/photos?per_page=12&query=${search}&client_id=${photos_access_key}`;
-      console.log(url)
-      result = await axios(url).then((res)=>{
-       return res.data.results;
-      });
+      let result = [];
+      if (search === ""){ 
+        result= fetchPhotos();
+        }else{
+        result = await axios(url).then((res)=>{
+          return res.data.results;
+         });
+      }
+          
+      
       const allPhotosResult = result.map((e,i)=>{
         return{
           index: i,
@@ -56,6 +61,7 @@ export const searchPhotos = createAsyncThunk(
           added: e.created_at
         }
       })
+      
       return allPhotosResult;
     } catch (error) {
       throw new Error("Error searching photos:" + error.message);

@@ -12,7 +12,9 @@ function SearchBar() {
   const onSubmit = async (e) => {
     try {
       console.log("SEARCH:", search);
+      console.log("LOCATION:", location.pathname)
       dispatch(searchPhotos(search));
+      if(location && location.pathname !== "/home") window.location.replace("/home");
     } catch (error) {
       throw new Error("ERROR EN SEARCH COMPONENT" + error.message);
     }

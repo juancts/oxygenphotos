@@ -21,7 +21,7 @@ function Footer() {
     <Box
       
       sx={{
-        position: isFavoritesEmpty && location.pathname === "/favorites" ? "fixed" : "relative",
+        position: isFavoritesEmpty && location.pathname !== "/home" ? "fixed" : "relative",
         flexGrow: 1,
         bottom: 0,
         width:"100%",
