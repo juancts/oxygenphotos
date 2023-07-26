@@ -1,4 +1,4 @@
-import { BsFillHeartFill, BsDownload, BsDisplay } from "react-icons/bs";
+import { BsFillHeartFill, BsDownload } from "react-icons/bs";
 import styles from "./Card.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -13,7 +13,7 @@ function Card(props) {
   const favorites = useSelector((state) => state.favorites.favorites);
   const isFavorite = favorites.some((photo) => photo.id === props.id);
   const location = props.location.pathname;
-  console.log("FURST LOCATION::", location);
+  console.log("FURST LOCATION:", location);
 
   const handleClick = () => {
     if (isFavorite) {
@@ -26,7 +26,7 @@ function Card(props) {
   return (
     <>
       {console.log("second:", location)}
-      {location !== "/favorites" ? (
+      {location !== "/favorites" && location !=="/favoritessearch" ? (
         <div className={styles.container}>
           <ImageListItem key={props.id}>
             <Tooltip title="Favorites">
@@ -34,7 +34,7 @@ function Card(props) {
                 id="heart"
                 onClick={handleClick}
                 className={`${styles.hicon} ${
-                  isFavorite || location === "/favorites" ? styles.favorite : ""
+                  isFavorite || location === "/favorites" || location ==="/favoritessearch" ? styles.favorite : ""
                 }`}
               >
                 <BsFillHeartFill />
@@ -42,6 +42,7 @@ function Card(props) {
             </Tooltip>
 
             <img
+            
               src={`${props.photo}?w=248&fit=crop&auto=format`}
               srcSet={`${props.photo}?w=248&fit=crop&auto=format&dpr=2 2x`}
               alt={props.description}
@@ -57,13 +58,13 @@ function Card(props) {
                 id="heart"
                 onClick={handleClick}
                 className={`${styles.hicon} ${
-                  isFavorite || location === "/favorites" ? styles.favorite : ""
+                  (isFavorite && (location === "/favorites" || location === "/favoritessearch")) ? styles.favorite : ""
                 }`}
               >
                 <BsFillHeartFill />
               </i>
             </Tooltip>
-            {isFavorite && location === "/favorites" && (
+            {(location === "/favoritessearch" || location === "/favorites") && isFavorite && (
               <Tooltip title="Download">
                 <i id="download" className={styles.dicon}>
                   <BsDownload />

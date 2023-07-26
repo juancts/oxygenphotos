@@ -1,33 +1,27 @@
-import React, { useState } from "react";
-import Card from "../../components/Card/Card.jsx";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
-import Button from "@mui/material/Button";
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
-import { updateFavorite } from "../../features/photos/favoriteSlice.js";
+import { Box, Button, Card, Modal, TextField, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateFavorite } from '../../features/photos/favoriteSlice';
 import styles from "./Favorites.module.css";
-import Order from "./Order.jsx";
-import Search from "./Search.jsx";
+import Order from './Order';
+import Search from './Search';
+import { useLocation } from 'react-router-dom';
 
-function Favorites() {
+function SearchedDescription() {
+  const searchedInfo = useSelector((state) => state.favorites.searchDescription);
   const favorites = useSelector((state) => state.favorites.favorites);
-  //const searchFavorites = useSelector((state) => state.favorites.searchDescription);
-
-  const location = useLocation();
-  const [editingId, setEditingId] = useState(null);
-  const [editedDescription, setEditedDescription] = useState("");
-  // Modal state
   const [open, setOpen] = useState(false);
+  const [editingId, setEditingId] = useState(null);
+  const [editedDescription, setEditedDescription] = useState('');
   const dispatch = useDispatch();
-
   const handleEditButtonClick = (photoId, description) => {
     setEditingId(photoId);
     setEditedDescription(description);
     handleModalOpen();
   };
+  const location = useLocation();
+
+  console.log("SEARCHED INFO:", searchedInfo)
 
   const handleSaveDescription = () => {
     if (editingId && editedDescription) {
@@ -41,15 +35,13 @@ function Favorites() {
     }
   };
 
-  // Modal state
   const handleModalOpen = () => setOpen(true);
-  // inicializo datos
   const handleModalClose = () => {
     setOpen(false);
     setEditingId(null);
-    setEditedDescription("");
+    setEditedDescription('');
   };
-  
+
   return (
     <div className={styles.container}>
       <div style={{display:"flex", flexDirection:"row", justifyContent:"center", gap:"10%", paddingBottom:"5%"}}>
@@ -57,42 +49,41 @@ function Favorites() {
       <Search/>
 
       </div>
-      
-      {!favorites || favorites.length === 0 ? (
-        <div style={{ textAlign: "center" }}>
-          <p>NO PHOTOS ADDED PLEASE ADD FAVORITES PHOTOS</p>
+    
+      {!searchedInfo || searchedInfo.length === 0 ? (
+        <div>
+          <p>
+            <a href="/favorites">NOT FOUND GO BACK</a>
+          </p>
         </div>
       ) : (
-        favorites &&
-        favorites.map((e, i) => (
-          <div className={styles.cards}>
+        searchedInfo.map((e, i) => (
+          <div key={i} className={styles.cards}>
             <div>
-              <Card
-                id={e.id}
-                key={e.id}
-                index={i}
-                height={e.height}
-                width={e.width}
-                description={e.description}
-                photo={e.photo}
-                location={location}
-              />
+            <Card
+              id={e.id}
+              key={e.id}
+              index={i}
+              height={e.height}
+              width={e.width}
+              description={e.description}
+              photo={e.photo}
+              location={location}
+            />
             </div>
             <div>
               <input
-                style={{ display: "inline-block" }}
+                style={{ display: 'inline-block' }}
                 type="text"
                 placeholder={e.description}
               />
-              <button
-                onClick={() => handleEditButtonClick(e.id, e.description)}
-              >
+              <button onClick={() => handleEditButtonClick(e.id, e.description)}>
                 edit
               </button>
               <p>Width: {e.width}</p>
               <p>Height: {e.height}</p>
               <p>Likes: {e.likes}</p>
-              <p>Date added:{e.added}</p>
+              <p>Date added: {e.added}</p>
             </div>
           </div>
         ))
@@ -105,11 +96,11 @@ function Favorites() {
       >
         <Box
           sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            bgcolor: "background.paper",
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            bgcolor: 'background.paper',
             boxShadow: 24,
             p: 4,
             maxWidth: 400,
@@ -128,10 +119,7 @@ function Favorites() {
           <Button variant="contained" onClick={handleModalClose}>
             Close
           </Button>
-          <Button
-            variant="contained"
-            onClick={() => handleSaveDescription(editingId)}
-          >
+          <Button variant="contained" onClick={handleSaveDescription}>
             Save
           </Button>
         </Box>
@@ -140,4 +128,4 @@ function Favorites() {
   );
 }
 
-export default Favorites;
+export default SearchedDescription;
