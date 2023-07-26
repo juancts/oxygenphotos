@@ -1,6 +1,5 @@
 import React from "react";
-import { Box, Container, Grid, Typography } from "@mui/material";
-import styles from "./Footer.module.css";
+import { Box, Container, Typography } from "@mui/material";
 import { BsFillEnvelopeAtFill, BsLinkedin, BsInstagram } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -19,7 +18,7 @@ function Footer() {
 
   return (
     <Box
-      
+    
       sx={{
         position: isFavoritesEmpty && location.pathname !== "/home" ? "fixed" : "relative",
         flexGrow: 1,
