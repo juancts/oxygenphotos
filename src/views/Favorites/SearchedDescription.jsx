@@ -1,11 +1,12 @@
-import { Box, Button, Card, Modal, TextField, Typography } from '@mui/material';
+import { Box, Button, Modal, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateFavorite } from '../../features/photos/favoriteSlice';
 import styles from "./Favorites.module.css";
 import Order from './Order';
 import Search from './Search';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import Card from '../../components/Card/Card';
 
 function SearchedDescription() {
   const searchedInfo = useSelector((state) => state.favorites.searchDescription);
@@ -22,6 +23,7 @@ function SearchedDescription() {
   const location = useLocation();
 
   console.log("SEARCHED INFO:", searchedInfo)
+  
 
   const handleSaveDescription = () => {
     if (editingId && editedDescription) {
@@ -53,13 +55,14 @@ function SearchedDescription() {
       {!searchedInfo || searchedInfo.length === 0 ? (
         <div>
           <p>
-            <a href="/favorites">NOT FOUND GO BACK</a>
+            <Link to= "/favorites">NOT FOUND GO BACK</Link>
           </p>
         </div>
       ) : (
         searchedInfo.map((e, i) => (
-          <div key={i} className={styles.cards}>
+          <div className={styles.cards}>
             <div>
+              {console.log("PHOTO***************", e.photo)}
             <Card
               id={e.id}
               key={e.id}
@@ -70,6 +73,7 @@ function SearchedDescription() {
               photo={e.photo}
               location={location}
             />
+            {console.log("PHOTO***************")}
             </div>
             <div>
               <input

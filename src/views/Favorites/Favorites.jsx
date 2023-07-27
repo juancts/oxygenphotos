@@ -53,8 +53,8 @@ function Favorites() {
   return (
     <div className={styles.container}>
       <div style={{display:"flex", flexDirection:"row", justifyContent:"center", gap:"10%", paddingBottom:"5%"}}>
-      <Order/>
-      <Search/>
+      <Order />
+      <Search favorites={favorites}/>
 
       </div>
       

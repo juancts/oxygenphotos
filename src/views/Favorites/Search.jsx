@@ -1,16 +1,32 @@
 import { Box, Button, Input, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { searchDescription } from "../../features/photos/favoriteSlice";
 import { Link } from "react-router-dom";
 
 function Search() {
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
+  const favorites = useSelector((state)=>state.favorites.favorites)
+  
+console.log("FAVORITES", favorites)
+console.log("SEARCH", search)
 
-  const handleSearch = (e) => {
+
+  const handleSearch = () => {
     console.log(search);
-    dispatch(searchDescription(search));
+    let searchedFavorites = [];
+    let tosearch = search.toLowerCase();
+    if(tosearch){
+      searchedFavorites = favorites.filter((e)=>{
+      const description = e.description || '';
+      return description.toLowerCase().includes(tosearch)}
+      )
+    }else{
+      searchedFavorites =[];
+    }
+    dispatch(searchDescription(searchedFavorites));
+
   };
 
   const handleChange = (e) => {

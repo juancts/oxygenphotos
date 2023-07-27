@@ -106,18 +106,11 @@ export const favoriteSlice = createSlice({
     },
     // Filter favorites based on the description containing the search query
     searchDescription: (state, action)=>{
-      let search = action.payload.toLowerCase();
+      let search = action.payload;
       console.log("SEARCH:",search)
-      const searchedFavorites = state.favorites.filter((photo) => {
-        // Check if the description property exists and is not null before performing the search
-        const description = photo.description || '';
-        return description.toLowerCase().includes(search)}
-  )
-      if(searchedFavorites.length !== 0){
-        state.searchDescription = searchedFavorites;
-      }else{
-        state.searchDescription = [];
-      }
+      
+        state.searchDescription = search;
+      
     }
   },
 });

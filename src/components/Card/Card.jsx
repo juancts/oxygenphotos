@@ -13,8 +13,8 @@ function Card(props) {
   const favorites = useSelector((state) => state.favorites.favorites);
   const isFavorite = favorites.some((photo) => photo.id === props.id);
   const location = props.location.pathname;
-  console.log("FURST LOCATION:", location);
-
+  
+  console.log("CARD LOCATION:",location)
   const handleClick = () => {
     if (isFavorite) {
       dispatch(deleteFavorites(props.id));
@@ -25,7 +25,7 @@ function Card(props) {
 
   return (
     <>
-      {console.log("second:", location)}
+  
       {location !== "/favorites" && location !=="/favoritessearch" ? (
         <div className={styles.container}>
           <ImageListItem key={props.id}>
@@ -40,7 +40,7 @@ function Card(props) {
                 <BsFillHeartFill />
               </i>
             </Tooltip>
-
+                    
             <img
             
               src={`${props.photo}?w=248&fit=crop&auto=format`}
@@ -64,7 +64,7 @@ function Card(props) {
                 <BsFillHeartFill />
               </i>
             </Tooltip>
-            {(location === "/favoritessearch" || location === "/favorites") && isFavorite && (
+            {(location === "/favoritessearch" || location === "/favorites") && (
               <Tooltip title="Download">
                 <i id="download" className={styles.dicon}>
                   <BsDownload />
