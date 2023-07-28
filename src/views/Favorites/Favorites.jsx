@@ -16,7 +16,7 @@ function Favorites() {
   const favorites = useSelector((state) => state.favorites.favorites);
   //const searchFavorites = useSelector((state) => state.favorites.searchDescription);
 
-  console.log(favorites.download)
+  console.log(favorites.download);
 
   const location = useLocation();
   const [editingId, setEditingId] = useState(null);
@@ -51,25 +51,32 @@ function Favorites() {
     setEditingId(null);
     setEditedDescription("");
   };
-  
-  return (
-    <div className={styles.container}>
-      <div style={{display:"flex", flexDirection:"row", justifyContent:"center", gap:"10%", paddingBottom:"5%"}}>
-      <Order />
-      <Search />
 
-      </div>
-      
+  return (
+    <Box className={styles.container}>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "10%",
+          paddingBottom: "5%",
+        }}
+      >
+        <Order />
+        <Search />
+      </Box>
+
       {!favorites || favorites.length === 0 ? (
-        <div style={{ textAlign: "center" }}>
-          <p>NO PHOTOS ADDED PLEASE ADD FAVORITES PHOTOS</p>
-        </div>
+        <Box style={{ textAlign: "center" }}>
+          <Typography variant="body1">
+            NO PHOTOS ADDED PLEASE ADD FAVORITES PHOTOS
+          </Typography>
+        </Box>
       ) : (
-        favorites &&
-        favorites.map((e, i) => (
-          
-          <div className={styles.cards}>
-            <div>
+        <Box className={styles.cards}>
+          {favorites.map((e, i) => (
+            <Box key={e.id}>
               <Card
                 id={e.id}
                 key={e.id}
@@ -81,25 +88,27 @@ function Favorites() {
                 download={e.download}
                 location={location}
               />
-            </div>
-            <div>
-              <input
-                style={{ display: "inline-block" }}
-                type="text"
-                placeholder={e.description}
-              />
-              <button
-                onClick={() => handleEditButtonClick(e.id, e.description)}
-              >
-                edit
-              </button>
-              <p>Width: {e.width}</p>
-              <p>Height: {e.height}</p>
-              <p>Likes: {e.likes}</p>
-              <p>Date added:{e.added}</p>
-            </div>
-          </div>
-        ))
+              <Box>
+                <TextField
+                  style={{ display: "block", width: "100%" }}
+                  type="text"
+                  placeholder={e.description}
+                  value={editedDescription}
+                  onChange={(e) => setEditedDescription(e.target.value)}
+                />
+                <Button
+                  onClick={() => handleEditButtonClick(e.id, e.description)}
+                >
+                  edit
+                </Button>
+                <Typography>Width: {e.width}</Typography>
+                <Typography>Height: {e.height}</Typography>
+                <Typography>Likes: {e.likes}</Typography>
+                <Typography>Date added: {e.added}</Typography>
+              </Box>
+            </Box>
+          ))}
+        </Box>
       )}
       <Modal
         open={open}
@@ -140,7 +149,7 @@ function Favorites() {
           </Button>
         </Box>
       </Modal>
-    </div>
+    </Box>
   );
 }
 

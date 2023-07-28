@@ -96,8 +96,8 @@ function Card(props) {
               alt={props.description}
               loading="lazy"
               style={{
-                minWidth: "300px", // Adjust the photo size to be 100% of its container width
-                height: location === "/favoritessearch" || location === "/favorites" ? "auto" : "300px", // Reduce the height on mobile view
+                width: "300px", // Adjust the photo size to be 100% of its container width
+                height: location === "/favoritessearch" || location === "/favorites" ? "300px" : "300px", // Reduce the height on mobile view
               }}
             />
           </ImageListItem>
