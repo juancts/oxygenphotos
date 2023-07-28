@@ -6,6 +6,12 @@ import { NavLink } from "react-router-dom";
 
 function NavBar() {
 
+  const customDrawerClass = {
+    paper: {
+      height: "fit-content",
+    },
+  };
+
 const [open, setOpen] = useState(false);
 
 
@@ -23,23 +29,23 @@ const toggleDrawer = (open) => (event) => {
 
 const list = () => (
   <Box
-    sx={{ width: 250 }}
+    sx={{height:"auto", width: "250px", color: "white", backgroundColor: "black" }}
     role="presentation"
     onClick={toggleDrawer(false)}
     onKeyDown={toggleDrawer(false)}
   >
     <List>
-      <NavLink to="/home">
+      <NavLink  to="/home" style={{ textDecoration: "none", color: "white" }}>
         <ListItem button>
           <ListItemText primary="Inicio" />
         </ListItem>
       </NavLink>
-      <NavLink to="/favorites">
+      <NavLink to="/favorites" style={{ textDecoration: "none", color: "white" }}>
         <ListItem button>
           <ListItemText primary="My photos" />
         </ListItem>
       </NavLink>
-      <NavLink to="/about">
+      <NavLink to="/about" style={{ textDecoration: "none", color: "white" }}>
         <ListItem button>
           <ListItemText primary="About" />
         </ListItem>
@@ -47,6 +53,8 @@ const list = () => (
     </List>
   </Box>
 );
+
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: "red" }}>
@@ -66,6 +74,13 @@ const list = () => (
               
             </IconButton>
             <Drawer
+            
+               variant="temporary"
+               PaperProps={{
+                sx:{
+                  height:"fit-content"
+                }
+               }}
               anchor="right"
               open={open}
               onClose={toggleDrawer(false)}
