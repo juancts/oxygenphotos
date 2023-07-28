@@ -71,6 +71,7 @@ function SearchedDescription() {
               width={e.width}
               description={e.description}
               photo={e.photo}
+              download={e.download}
               location={location}
             />
             {console.log("PHOTO***************")}

@@ -16,6 +16,8 @@ function Favorites() {
   const favorites = useSelector((state) => state.favorites.favorites);
   //const searchFavorites = useSelector((state) => state.favorites.searchDescription);
 
+  console.log(favorites.download)
+
   const location = useLocation();
   const [editingId, setEditingId] = useState(null);
   const [editedDescription, setEditedDescription] = useState("");
@@ -54,7 +56,7 @@ function Favorites() {
     <div className={styles.container}>
       <div style={{display:"flex", flexDirection:"row", justifyContent:"center", gap:"10%", paddingBottom:"5%"}}>
       <Order />
-      <Search favorites={favorites}/>
+      <Search />
 
       </div>
       
@@ -65,6 +67,7 @@ function Favorites() {
       ) : (
         favorites &&
         favorites.map((e, i) => (
+          
           <div className={styles.cards}>
             <div>
               <Card
@@ -75,6 +78,7 @@ function Favorites() {
                 width={e.width}
                 description={e.description}
                 photo={e.photo}
+                download={e.download}
                 location={location}
               />
             </div>

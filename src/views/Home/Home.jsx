@@ -5,18 +5,15 @@ import Cards from "../../components/Cards/Cards";
 import React, { useEffect } from "react";
 import { fetchPhotos } from "../../features/photos/photosSlice";
 
-
 function Home() {
+  const dispatch = useDispatch();
 
-const dispatch = useDispatch()
-
-useEffect(()=>{
-  dispatch(fetchPhotos())
-},[dispatch])
+  useEffect(() => {
+    dispatch(fetchPhotos());
+  }, [dispatch]);
 
   return (
     <div>
-      
       <Cards />
     </div>
   );

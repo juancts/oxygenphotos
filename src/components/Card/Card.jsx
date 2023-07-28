@@ -13,8 +13,8 @@ function Card(props) {
   const favorites = useSelector((state) => state.favorites.favorites);
   const isFavorite = favorites.some((photo) => photo.id === props.id);
   const location = props.location.pathname;
-  
-  console.log("CARD LOCATION:",location)
+
+
   const handleClick = () => {
     if (isFavorite) {
       dispatch(deleteFavorites(props.id));
@@ -23,10 +23,20 @@ function Card(props) {
     }
   };
 
+  const handleDownload = ()=>{
+    const downloadLink = document.createElement("a");
+    downloadLink.href = props.download;
+    downloadLink.download = "photo.jpg";
+    console.log(props.download)
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  }
+
+
   return (
     <>
-  
-      {location !== "/favorites" && location !=="/favoritessearch" ? (
+      {location !== "/favorites" && location !== "/favoritessearch" ? (
         <div className={styles.container}>
           <ImageListItem key={props.id}>
             <Tooltip title="Favorites">
@@ -34,15 +44,18 @@ function Card(props) {
                 id="heart"
                 onClick={handleClick}
                 className={`${styles.hicon} ${
-                  isFavorite || location === "/favorites" || location ==="/favoritessearch" ? styles.favorite : ""
+                  isFavorite ||
+                  location === "/favorites" ||
+                  location === "/favoritessearch"
+                    ? styles.favorite
+                    : ""
                 }`}
               >
                 <BsFillHeartFill />
               </i>
             </Tooltip>
-                    
+
             <img
-            
               src={`${props.photo}?w=248&fit=crop&auto=format`}
               srcSet={`${props.photo}?w=248&fit=crop&auto=format&dpr=2 2x`}
               alt={props.description}
@@ -58,7 +71,10 @@ function Card(props) {
                 id="heart"
                 onClick={handleClick}
                 className={`${styles.hicon} ${
-                  (isFavorite && (location === "/favorites" || location === "/favoritessearch")) ? styles.favorite : ""
+                  isFavorite &&
+                  (location === "/favorites" || location === "/favoritessearch")
+                    ? styles.favorite
+                    : ""
                 }`}
               >
                 <BsFillHeartFill />
@@ -66,7 +82,9 @@ function Card(props) {
             </Tooltip>
             {(location === "/favoritessearch" || location === "/favorites") && (
               <Tooltip title="Download">
-                <i id="download" className={styles.dicon}>
+                <i id="download" 
+                onClick={handleDownload}
+                className={styles.dicon}>
                   <BsDownload />
                 </i>
               </Tooltip>
