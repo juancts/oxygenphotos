@@ -90,11 +90,15 @@ function Card(props) {
               </Tooltip>
             )}
             <img
-              style={{ width: "300px", height: "300px" }}
+               
               src={`${props.photo}?w=248&fit=crop&auto=format`}
               srcSet={`${props.photo}?w=248&fit=crop&auto=format&dpr=2 2x`}
               alt={props.description}
               loading="lazy"
+              style={{
+                minWidth: "300px", // Adjust the photo size to be 100% of its container width
+                height: location === "/favoritessearch" || location === "/favorites" ? "auto" : "300px", // Reduce the height on mobile view
+              }}
             />
           </ImageListItem>
         </div>

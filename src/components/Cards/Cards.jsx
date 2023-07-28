@@ -14,11 +14,11 @@ function Cards() {
   return (
     <Box sx={{ margin: "25px" }}>
       <div className={styles.container}>
-        <div className={styles.sigant}>
-          <i className={styles.icon}>
+        {/* <div className={styles.sigant}>
+          <i className={styles.icon} >
             <BsFillCaretLeftFill />
           </i>
-        </div>
+        </div> */}
 
         {location.pathname !== "/favorites" ? (
           <ImageList variant="masonry"  sx={{
@@ -47,11 +47,11 @@ function Cards() {
           <Favorites />
         )}
         {/* </Grid> */}
-        <div className={styles.sigant}>
+        {/* <div className={styles.sigant}>
           <i className={styles.icon}>
             <BsFillCaretRightFill />
           </i>
-        </div>
+        </div> */}
       </div>
     </Box>
   );
