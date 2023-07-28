@@ -12,9 +12,10 @@ function SearchBar() {
   const onSubmit = async (e) => {
     try {
       console.log("SEARCH:", search);
-      console.log("LOCATION:", location.pathname)
+      console.log("LOCATION:", location.pathname);
       dispatch(searchPhotos(search));
-      if(location && location.pathname !== "/home") window.location.replace("/home");
+      if (location && location.pathname !== "/home")
+        window.location.replace("/home");
     } catch (error) {
       throw new Error("ERROR EN SEARCH COMPONENT" + error.message);
     }
@@ -26,38 +27,57 @@ function SearchBar() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, backgroundColor: "black", textAlign:"center", padding:"100px" }}>
+    <Box
+      sx={{
+        flexGrow: 1,
+        backgroundColor: "black",
+        textAlign: "center",
+        padding: "100px",
+      }}
+    >
       {location.pathname !== "/favorites" ? (
-        <Typography variant="h4" sx={{color: "white"}}>OXYGEN PHOTO GALLERY</Typography>
+        <Typography variant="h4" sx={{ color: "white" }}>
+          OXYGEN PHOTO GALLERY
+        </Typography>
       ) : (
-        <Typography variant="h4" sx={{color: "white"}}>MY PHOTOS</Typography>
+        <Typography variant="h4" sx={{ color: "white" }}>
+          MY PHOTOS
+        </Typography>
       )}
-      <Typography variant="h6" sx={{color: "white"}}>
+      <Typography variant="h6" sx={{ color: "white", display: {xs:"none", md:"block"} }}>
         La fuente de imágenes de internet. Con recursos de creadores de todo el
         mundo.
       </Typography>
-      <Box sx={{display:"flex", gap:"25px", justifyContent:"center", marginTop:"25px"}}>
-      <TextField
-        id="outlined-basic"
-        label="Search"
-        variant="outlined"
-        onChange={handleOnchange}
+      <Box
         sx={{
-          backgroundColor: "white",
-          borderRadius:"10px",
-          width: "500px",
-          height: "40px",
-          
-          "& .MuiOutlinedInput-root": {
-            "& fieldset": {
-              border: "none",
-              
-            },
-          },
+          display: "flex",
+          gap: "25px",
+          flexDirection: { xs: "column", md: "row" },
+          justifyContent: "center",
+          marginTop: "25px",
         }}
-      />
-      <Button variant="contained" onClick={onSubmit}>Search</Button>
+      >
+        <TextField
+          id="outlined-basic"
+          label="Search"
+          variant="outlined"
+          onChange={handleOnchange}
+          sx={{
+            backgroundColor: "white",
+            borderRadius: "10px",
+            width: { xs: "100%", md: "500px" },
+            height: "40px",
 
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": {
+                border: "none",
+              },
+            },
+          }}
+        />
+        <Button variant="contained" onClick={onSubmit}>
+          Search
+        </Button>
       </Box>
     </Box>
   );
