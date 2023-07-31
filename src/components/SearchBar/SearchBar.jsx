@@ -3,19 +3,27 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { searchPhotos } from "../../features/photos/photosSlice";
+import { useNavigate } from "react-router-dom";
+
 
 function SearchBar() {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   const location = useLocation();
+  const navigate = useNavigate();
+
+
 
   const onSubmit = async (e) => {
+    e.preventDefault();
     try {
       console.log("SEARCH:", search);
       console.log("LOCATION:", location.pathname);
       dispatch(searchPhotos(search));
-      if (location && location.pathname !== "/home")
-        window.location.replace("/home");
+      navigate("/home");
+      //console.log(history)
+      // if (location && location.pathname !== "/home")
+      //   window.location.replace("/home");
     } catch (error) {
       throw new Error("ERROR EN SEARCH COMPONENT" + error.message);
     }
@@ -25,6 +33,10 @@ function SearchBar() {
     const input = e.target.value;
     setSearch(input);
   };
+
+  const handleResetSearch = ()=>{
+    dispatch(searchPhotos([]))
+  }
 
   return (
     <Box
@@ -77,6 +89,9 @@ function SearchBar() {
         />
         <Button variant="contained" onClick={onSubmit}>
           Search
+        </Button>
+        <Button variant="contained" onClick={handleResetSearch}>
+          Clear
         </Button>
       </Box>
     </Box>

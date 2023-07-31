@@ -5,7 +5,7 @@ import NabBar from "./components/NavBar/NavBar.jsx"
 import SearchBar from "./components/SearchBar/SearchBar.jsx"
 import { useSelector } from "react-redux";
 import "./App.css"
-import SearchedDescription from "./views/Favorites/SearchedDescription";
+
 
 function App() {
   let photos = useSelector(state=>state.photos)
@@ -26,7 +26,6 @@ function App() {
       <Route exact path="/" element={<Home />} />
       <Route exact path="/home" element={<Home />} />
       <Route exact path="/favorites" element={<Favorites />} />
-      <Route exact path="/favoritessearch" element={<SearchedDescription />} />
       <Route exact path="/about" element={<About />} />
       
       </Routes>      

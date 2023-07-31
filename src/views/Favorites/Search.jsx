@@ -8,7 +8,7 @@ function Search() {
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const favorites = useSelector((state)=>state.favorites.favorites)
-  const [searchedfavorites, setSeaarchedfavorites] = useState(favorites);
+  
   
 console.log("FAVORITES", favorites)
 console.log("SEARCH", search)

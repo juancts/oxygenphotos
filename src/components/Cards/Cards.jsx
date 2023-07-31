@@ -1,14 +1,14 @@
 import React from "react";
-import { useSelector } from "react-redux";
+
 import Card from "../Card/Card";
 import { useLocation } from "react-router-dom";
 import styles from "./Cards.module.css";
-import { BsFillCaretRightFill, BsFillCaretLeftFill } from "react-icons/bs";
+//import { BsFillCaretRightFill, BsFillCaretLeftFill } from "react-icons/bs";
 import { Box, ImageList } from "@mui/material";
 import Favorites from "../../views/Favorites/Favorites";
 
-function Cards() {
-  const photos = useSelector((photos) => photos.photos.allPhotos);
+function Cards({photos}) {
+ // const photos = useSelector((photos) => photos.photos.allPhotos);
   const location = useLocation();
 
   return (
