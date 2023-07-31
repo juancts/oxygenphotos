@@ -16,11 +16,12 @@ function Order() {
     <Box sx={{ display: "flex", flexDirection: "column" }}>
       <Typography>Order By</Typography>
       <Select
+        value="width"
         onChange={handleChange}
         sx={{ width: "300px" }}
         name="width"
         id=""
-      >
+      > 
         <MenuItem value="width">width</MenuItem>
         <MenuItem value="height">Height</MenuItem>
         <MenuItem value="likes">Likes</MenuItem>

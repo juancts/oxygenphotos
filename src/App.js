@@ -1,7 +1,8 @@
 import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { Home, Favorites, About, Footer } from "./views";
-import { NavBar, SearchBar } from "./components";
+import NabBar from "./components/NavBar/NavBar.jsx"
+import SearchBar from "./components/SearchBar/SearchBar.jsx"
 import { useSelector } from "react-redux";
 import "./App.css"
 import SearchedDescription from "./views/Favorites/SearchedDescription";
@@ -17,7 +18,7 @@ function App() {
     <>
       {/* {location.pathname !== "/" && ( */}
       
-        <NavBar /> 
+        <NabBar /> 
         <SearchBar />
         
       {/* )} */}

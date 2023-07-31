@@ -6,12 +6,7 @@ import { NavLink } from "react-router-dom";
 
 function NavBar() {
 
-  const customDrawerClass = {
-    paper: {
-      height: "fit-content",
-    },
-  };
-
+  
 const [open, setOpen] = useState(false);
 
 

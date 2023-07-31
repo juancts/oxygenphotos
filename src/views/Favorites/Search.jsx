@@ -2,12 +2,13 @@ import { Box, Button, Input, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { searchDescription } from "../../features/photos/favoriteSlice";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 function Search() {
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const favorites = useSelector((state)=>state.favorites.favorites)
+  const [searchedfavorites, setSeaarchedfavorites] = useState(favorites);
   
 console.log("FAVORITES", favorites)
 console.log("SEARCH", search)
@@ -29,6 +30,8 @@ console.log("SEARCH", search)
 
   };
 
+
+  
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
@@ -36,11 +39,11 @@ console.log("SEARCH", search)
     <Box sx={{ display: "flex", flexDirection: "column" }}>
       <Typography>Search Description</Typography>
       <Input onChange={handleChange} sx={{ width: "300px" }} type="" />
-     <Link to="/favoritessearch">
+     {/* <Link to="/favoritessearch"> */}
      <Button onClick={handleSearch} variant="contained">
         Search
       </Button>
-      </Link> 
+      {/* </Link>  */}
     </Box>
   );
 }
