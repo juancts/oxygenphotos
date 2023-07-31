@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { Home, Favorites, About, Footer } from "./views";
 import NabBar from "./components/NavBar/NavBar.jsx"
 import SearchBar from "./components/SearchBar/SearchBar.jsx"
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./App.css"
+import { fetchPhotos } from "./features/photos/photosSlice";
 
 
 function App() {
-  let photos = useSelector(state=>state.photos)
-  console.log("photos:", photos)
-  let location = useLocation();
-  console.log(location.pathname)
+  const dispatch = useDispatch()
+  useEffect(()=>{
+      dispatch(fetchPhotos())
+  },[dispatch]) 
+  
 
   return (
     
