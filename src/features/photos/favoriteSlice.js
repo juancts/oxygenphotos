@@ -69,17 +69,21 @@ export const favoriteSlice = createSlice({
       }
     },
     orderFavorites: (state, action) => {
-      console.log("order Favorites");
+      
       const order = action.payload;
-      console.log(action.payload);
       switch (order) {
-        case "width":
+        case "Options":
+          console.log("en options")
+          break;
+        case "Width":
           console.log("width order")
+          console.log("STATE FAVORITES:", state)
+          state.favorites.map((e)=>console.log("EEEEE:", e))
           state.favorites.sort((a, b) =>
             (a.width?.toString() || "").localeCompare(b.width?.toString() || "")
           );
           break;
-        case "height":
+        case "Height":
           console.log("heigth order")
           state.favorites.sort((a, b) =>
             (a.height?.toString() || "").localeCompare(
@@ -87,13 +91,13 @@ export const favoriteSlice = createSlice({
             )
           );
           break;
-        case "likes":
+        case "Likes":
           console.log("likes order")
           state.favorites.sort((a, b) =>
             (a.likes?.toString() || "").localeCompare(b.likes?.toString() || "")
           );
           break;
-        case "added":
+        case "Added":
           console.log("date order")
           state.favorites.sort((a, b) =>
             (a.added?.toString() || "").localeCompare(b.added?.toString() || "")
