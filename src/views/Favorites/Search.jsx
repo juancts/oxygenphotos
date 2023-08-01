@@ -9,11 +9,7 @@ function Search() {
   const [search, setSearch] = useState("");
   const favorites = useSelector((state) => state.favorites.favorites);
 
-  console.log("FAVORITES", favorites);
-  console.log("SEARCH", search);
-
   const handleSearch = () => {
-    console.log(search);
     let searchedFavorites = [];
     let tosearch = search.toLowerCase();
     if (tosearch) {

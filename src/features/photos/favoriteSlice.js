@@ -33,32 +33,28 @@ export const orderFavorites = (order) => {
   };
 };
 
-
-export const searchDescription = (search)=>{
+export const searchDescription = (search) => {
   return {
-    type:"favorites/searchDescription",
+    type: "favorites/searchDescription",
     payload: search,
-  }
-}
+  };
+};
 
 export const favoriteSlice = createSlice({
   name: "favorites",
   initialState,
   reducers: {
     addToFavorites: (state, action) => {
-      console.log("en add to favorites");
       const { photoId, allPhotos } = action.payload;
       const photo = allPhotos.find((photo) => photo.id === photoId);
       const favorite = state.favorites.find((photo) => photo.id === photoId);
       if (photo && !favorite) state.favorites.push(photo);
     },
     deleteFavorites: (state, action) => {
-      console.log("en delete favorites");
       const photoId = action.payload;
       state.favorites = state.favorites.filter((photo) => photo.id !== photoId);
     },
     updateFavorite: (state, action) => {
-      console.log("en UPDATE FVORITES");
       const { photoId, updatedPhoto, favorites } = action.payload;
       const photoIndex = favorites.findIndex((photo) => photo.id === photoId);
       if (photoIndex !== -1) {
@@ -69,22 +65,17 @@ export const favoriteSlice = createSlice({
       }
     },
     orderFavorites: (state, action) => {
-      
       const order = action.payload;
       switch (order) {
         // case "Options":-
         //    state.favorites = state;
         //   break;
         case "Width":
-          console.log("width order")
-          console.log("STATE FAVORITES:", state)
-          state.favorites.map((e)=>console.log("EEEEE:", e))
           state.favorites.sort((a, b) =>
             (a.width?.toString() || "").localeCompare(b.width?.toString() || "")
           );
           break;
         case "Height":
-          console.log("heigth order")
           state.favorites.sort((a, b) =>
             (a.height?.toString() || "").localeCompare(
               b.height?.toString() || ""
@@ -92,30 +83,24 @@ export const favoriteSlice = createSlice({
           );
           break;
         case "Likes":
-          console.log("likes order")
           state.favorites.sort((a, b) =>
             (a.likes?.toString() || "").localeCompare(b.likes?.toString() || "")
           );
           break;
         case "Added":
-          console.log("date order")
           state.favorites.sort((a, b) =>
             (a.added?.toString() || "").localeCompare(b.added?.toString() || "")
           );
           break;
         default:
           return state;
-          
       }
     },
     // Filter favorites based on the description containing the search query
-    searchDescription: (state, action)=>{
+    searchDescription: (state, action) => {
       let search = action.payload;
-      console.log("SEARCH:",search)
-      
-        state.searchDescription = search;
-      
-    }
+      state.searchDescription = search;
+    },
   },
 });
 

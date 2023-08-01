@@ -14,22 +14,20 @@ export const fetchPhotos = createAsyncThunk("photos/fetchPhotos", async () => {
     allPhotos = await axios(url).then((res) => {
       return res.data;
     });
-    const allPhotosResult = allPhotos.map((e, i)=>{
+    const allPhotosResult = allPhotos.map((e, i) => {
       return {
-          index: i,
-          id: e.id,
-          width: e.width,
-          height: e.height,
-          description: e.description,
-          photo: e.urls.thumb,
-          likes: e.likes,
-          download: e.links.download,
-          added: e.created_at
-      }
-    })
+        index: i,
+        id: e.id,
+        width: e.width,
+        height: e.height,
+        description: e.description,
+        photo: e.urls.thumb,
+        likes: e.likes,
+        download: e.links.download,
+        added: e.created_at,
+      };
+    });
     return allPhotosResult;
-    //const response = await axios(`${baseURL}/photos`)
-    //return response.data;
   } catch (error) {
     throw new Error("Error carga photos: " + error.message);
   }
@@ -39,19 +37,18 @@ export const searchPhotos = createAsyncThunk(
   "photos/searchPhotos",
   async (search) => {
     try {
-      const url= `https://api.unsplash.com/search/photos?per_page=12&query=${search}&client_id=${photos_access_key}`;
+      const url = `https://api.unsplash.com/search/photos?per_page=12&query=${search}&client_id=${photos_access_key}`;
       let result = [];
-      if (search === ""){ 
-        result= fetchPhotos();
-        }else{
-        result = await axios(url).then((res)=>{
+      if (search === "") {
+        result = fetchPhotos();
+      } else {
+        result = await axios(url).then((res) => {
           return res.data.results;
-         });
+        });
       }
-          
-      
-      const allPhotosResult = result.map((e,i)=>{
-        return{
+
+      const allPhotosResult = result.map((e, i) => {
+        return {
           index: i,
           id: e.id,
           width: e.width,
@@ -60,10 +57,10 @@ export const searchPhotos = createAsyncThunk(
           photo: e.urls.thumb,
           likes: e.likes,
           download: e.links.download,
-          added: e.created_at
-        }
-      })
-      
+          added: e.created_at,
+        };
+      });
+
       return allPhotosResult;
     } catch (error) {
       throw new Error("Error searching photos:" + error.message);

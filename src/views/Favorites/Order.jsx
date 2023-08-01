@@ -7,26 +7,22 @@ function Order() {
   const dispatch = useDispatch();
   const [type, setType] = useState("Options");
 
-  console.log("TYPE", type)
-
-
   const handleChange = (e) => {
     const selectedValue = e.target.value;
     setType(selectedValue);
-    console.log(type);
     dispatch(orderFavorites(selectedValue));
   };
- 
+
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
       <Typography>Order By</Typography>
       <Select
-        value={type} 
+        value={type}
         onChange={handleChange}
         sx={{ width: "300px" }}
         id=""
-      > 
-      <MenuItem value="Options">Options</MenuItem>
+      >
+        <MenuItem value="Options">Options</MenuItem>
         <MenuItem value="Width">Width</MenuItem>
         <MenuItem value="Height">Height</MenuItem>
         <MenuItem value="Likes">Likes</MenuItem>

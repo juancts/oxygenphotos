@@ -7,29 +7,26 @@ import styles from "./Cards.module.css";
 import { Box, ImageList } from "@mui/material";
 import Favorites from "../../views/Favorites/Favorites";
 
-function Cards({photos}) {
- // const photos = useSelector((photos) => photos.photos.allPhotos);
+function Cards({ photos }) {
   const location = useLocation();
 
   return (
     <Box sx={{ margin: "25px" }}>
       <div className={styles.container}>
-        {/* <div className={styles.sigant}>
-          <i className={styles.icon} >
-            <BsFillCaretLeftFill />
-          </i>
-        </div> */}
-
         {location.pathname !== "/favorites" ? (
-          <ImageList variant="masonry"  sx={{
-            columnCount: {
-              xs: '1 !important',
-              sm: '2 !important',
-              md: '3 !important',
-              lg: '4 !important',
-              xl: '5 !important',
-            },
-          }} gap={8}>
+          <ImageList
+            variant="masonry"
+            sx={{
+              columnCount: {
+                xs: "1 !important",
+                sm: "2 !important",
+                md: "3 !important",
+                lg: "4 !important",
+                xl: "5 !important",
+              },
+            }}
+            gap={8}
+          >
             {photos.map((e, i) => (
               <Card
                 id={e.id}
@@ -46,12 +43,7 @@ function Cards({photos}) {
         ) : (
           <Favorites />
         )}
-        {/* </Grid> */}
-        {/* <div className={styles.sigant}>
-          <i className={styles.icon}>
-            <BsFillCaretRightFill />
-          </i>
-        </div> */}
+       
       </div>
     </Box>
   );

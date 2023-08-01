@@ -5,25 +5,17 @@ import { useLocation } from "react-router-dom";
 import { searchPhotos } from "../../features/photos/photosSlice";
 import { useNavigate } from "react-router-dom";
 
-
 function SearchBar() {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
 
-
-
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("SEARCH:", search);
-      console.log("LOCATION:", location.pathname);
       dispatch(searchPhotos(search));
       navigate("/home");
-      //console.log(history)
-      // if (location && location.pathname !== "/home")
-      //   window.location.replace("/home");
     } catch (error) {
       throw new Error("ERROR EN SEARCH COMPONENT" + error.message);
     }
@@ -34,9 +26,9 @@ function SearchBar() {
     setSearch(input);
   };
 
-  const handleResetSearch = ()=>{
-    dispatch(searchPhotos([]))
-  }
+  const handleResetSearch = () => {
+    dispatch(searchPhotos([]));
+  };
 
   return (
     <Box
@@ -56,7 +48,10 @@ function SearchBar() {
           MY PHOTOS
         </Typography>
       )}
-      <Typography variant="h6" sx={{ color: "white", display: {xs:"none", md:"block"} }}>
+      <Typography
+        variant="h6"
+        sx={{ color: "white", display: { xs: "none", md: "block" } }}
+      >
         La fuente de imágenes de internet. Con recursos de creadores de todo el
         mundo.
       </Typography>
@@ -90,9 +85,11 @@ function SearchBar() {
         <Button variant="contained" onClick={onSubmit}>
           Search
         </Button>
-        {search && <Button variant="contained" onClick={handleResetSearch}>
-          Clear
-        </Button>}
+        {search && (
+          <Button variant="contained" onClick={handleResetSearch}>
+            Clear
+          </Button>
+        )}
       </Box>
     </Box>
   );

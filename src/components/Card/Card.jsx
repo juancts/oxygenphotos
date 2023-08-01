@@ -16,10 +16,6 @@ function Card(props) {
   const location = props.location.pathname;
 
  
-  console.log("FAVORITES DOWNLOAD", allPhotos[0].download)
-
-
-
   const handleClick = () => {
     if (isFavorite) {
       dispatch(deleteFavorites(props.id));
@@ -32,9 +28,7 @@ function Card(props) {
     
     const downloadLink = document.createElement("a");
     downloadLink.href = props.download.split("?")[0].concat(`?force=true?ixit=${photos_access_key}`);
-    console.log("DOWNLOAD LINK HREF", downloadLink.href)
     downloadLink.setAttribute("download", "myphoto.jpg");
-    console.log(props.download)
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);

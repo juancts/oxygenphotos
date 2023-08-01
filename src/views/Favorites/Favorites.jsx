@@ -7,45 +7,39 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
-import { searchDescription, updateFavorite } from "../../features/photos/favoriteSlice.js";
+import {
+  searchDescription,
+  updateFavorite,
+} from "../../features/photos/favoriteSlice.js";
 import styles from "./Favorites.module.css";
 import Order from "./Order.jsx";
 import Search from "./Search.jsx";
 
 function Favorites() {
   const favorites = useSelector((state) => state.favorites.favorites);
-  const searchedDescription = useSelector((state)=> state.favorites.searchDescription);
+  const searchedDescription = useSelector(
+    (state) => state.favorites.searchDescription
+  );
   const dispatch = useDispatch();
   const [searchedfavorites, setSearchedfavorites] = useState(favorites);
- 
-  console.log("NO FAVRITES")
- 
-  console.log("SEARCHED FAVORITES:", searchedfavorites);
-  console.log("SEARCHED DESCRIPTION:", searchedDescription);
 
-  const handleResetSearch = () =>{
+  const handleResetSearch = () => {
     dispatch(searchDescription([]));
-  }
+  };
 
-
-  useEffect(()=>{
-    if (searchedDescription.length > 0 ){
-      setSearchedfavorites(searchedDescription)     
-  }else{
-    setSearchedfavorites(favorites)
-  }
-  
-},[searchedDescription, favorites]);
-    
-   
-
+  useEffect(() => {
+    if (searchedDescription.length > 0) {
+      setSearchedfavorites(searchedDescription);
+    } else {
+      setSearchedfavorites(favorites);
+    }
+  }, [searchedDescription, favorites]);
 
   const location = useLocation();
   const [editingId, setEditingId] = useState(null);
   const [editedDescription, setEditedDescription] = useState("");
   // Modal state
   const [open, setOpen] = useState(false);
-  
 
   const handleEditButtonClick = (photoId, description) => {
     setEditingId(photoId);
@@ -130,11 +124,11 @@ function Favorites() {
               </Box>
             </Box>
           ))}
-          
         </Box>
-        
       )}
-      {searchedDescription.length > 0 && (<Button onClick ={handleResetSearch}>Back to Favorites</Button>)}
+      {searchedDescription.length > 0 && (
+        <Button onClick={handleResetSearch}>Back to Favorites</Button>
+      )}
       <Modal
         open={open}
         onClose={handleModalClose}
