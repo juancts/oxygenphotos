@@ -72,9 +72,9 @@ export const favoriteSlice = createSlice({
       
       const order = action.payload;
       switch (order) {
-        case "Options":
-          console.log("en options")
-          break;
+        // case "Options":-
+        //    state.favorites = state;
+        //   break;
         case "Width":
           console.log("width order")
           console.log("STATE FAVORITES:", state)
