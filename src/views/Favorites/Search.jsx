@@ -1,4 +1,4 @@
-import { Box, Button, Input, Typography } from "@mui/material";
+import { Box, Button, Input, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { searchDescription } from "../../features/photos/favoriteSlice";
@@ -36,13 +36,16 @@ console.log("SEARCH", search)
     setSearch(e.target.value);
   };
   return (
-    <Box sx={{ display: "flex", flexDirection: "column" }}>
+    <Box sx={{ display: "flex", flexDirection: "column", justifyContent:"space-around" }}>
       <Typography>Search Description</Typography>
-      <Input onChange={handleChange} sx={{ width: "300px" }} type="" />
+      <TextField placeholder="Search description" variant="outlined" onChange={handleChange} sx={{ width: "300px" }} type="" />
      {/* <Link to="/favoritessearch"> */}
-     <Button onClick={handleSearch} variant="contained">
+     <Box sx={{textAlign:"right", marginTop:"5px"}}>
+     <Button onClick={handleSearch} sx={{width:"150px"}} variant="contained">
         Search
       </Button>
+
+     </Box>
       {/* </Link>  */}
     </Box>
   );

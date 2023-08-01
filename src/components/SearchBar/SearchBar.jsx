@@ -76,9 +76,9 @@ function SearchBar() {
           onChange={handleOnchange}
           sx={{
             backgroundColor: "white",
-            borderRadius: "10px",
+            borderRadius: "5px",
             width: { xs: "100%", md: "500px" },
-            height: "40px",
+            //height: "40px",
 
             "& .MuiOutlinedInput-root": {
               "& fieldset": {
@@ -90,9 +90,9 @@ function SearchBar() {
         <Button variant="contained" onClick={onSubmit}>
           Search
         </Button>
-        <Button variant="contained" onClick={handleResetSearch}>
+        {search && <Button variant="contained" onClick={handleResetSearch}>
           Clear
-        </Button>
+        </Button>}
       </Box>
     </Box>
   );
