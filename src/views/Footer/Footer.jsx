@@ -52,7 +52,9 @@ function Footer() {
           
             <BsFillEnvelopeAtFill />
             
-            jotarodriguez@gmail.com
+           <Typography sx={{display:{ xs: "none", sm: "block"}}}>jotarodriguez@gmail.com
+            </Typography> 
+            
             
           </a>
           </Typography>

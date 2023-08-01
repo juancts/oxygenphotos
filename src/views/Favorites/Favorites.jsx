@@ -17,7 +17,9 @@ function Favorites() {
   const searchedDescription = useSelector((state)=> state.favorites.searchDescription);
   const dispatch = useDispatch();
   const [searchedfavorites, setSearchedfavorites] = useState(favorites);
-
+ 
+  console.log("NO FAVRITES")
+ 
   console.log("SEARCHED FAVORITES:", searchedfavorites);
   console.log("SEARCHED DESCRIPTION:", searchedDescription);
 

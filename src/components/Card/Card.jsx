@@ -6,6 +6,7 @@ import {
   deleteFavorites,
 } from "../../features/photos/favoriteSlice";
 import { ImageListItem, Tooltip } from "@mui/material";
+import { photos_access_key } from "../../utils/url&ports";
 
 function Card(props) {
   const dispatch = useDispatch();
@@ -13,6 +14,10 @@ function Card(props) {
   const favorites = useSelector((state) => state.favorites.favorites);
   const isFavorite = favorites.some((photo) => photo.id === props.id);
   const location = props.location.pathname;
+
+ 
+  console.log("FAVORITES DOWNLOAD", allPhotos[0].download)
+
 
 
   const handleClick = () => {
@@ -24,9 +29,11 @@ function Card(props) {
   };
 
   const handleDownload = ()=>{
+    
     const downloadLink = document.createElement("a");
-    downloadLink.href = props.download;
-    downloadLink.download = "photo.jpg";
+    downloadLink.href = props.download.split("?")[0].concat(`?force=true?ixit=${photos_access_key}`);
+    console.log("DOWNLOAD LINK HREF", downloadLink.href)
+    downloadLink.setAttribute("download", "myphoto.jpg");
     console.log(props.download)
     document.body.appendChild(downloadLink);
     downloadLink.click();
@@ -82,9 +89,12 @@ function Card(props) {
             </Tooltip>
             {(location === "/favoritessearch" || location === "/favorites") && (
               <Tooltip title="Download">
-                <i id="download" 
+                <i
+                id="download" 
                 onClick={handleDownload}
-                className={styles.dicon}>
+                className={styles.dicon}
+                
+                >
                   <BsDownload />
                 </i>
               </Tooltip>

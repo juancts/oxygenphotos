@@ -21,7 +21,7 @@ export const fetchPhotos = createAsyncThunk("photos/fetchPhotos", async () => {
           width: e.width,
           height: e.height,
           description: e.description,
-          photo: e.urls.regular,
+          photo: e.urls.thumb,
           likes: e.likes,
           download: e.links.download,
           added: e.created_at
@@ -57,7 +57,7 @@ export const searchPhotos = createAsyncThunk(
           width: e.width,
           height: e.height,
           description: e.description,
-          photo: e.urls.regular,
+          photo: e.urls.thumb,
           likes: e.likes,
           download: e.links.download,
           added: e.created_at
