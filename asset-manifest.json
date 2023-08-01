@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/oxygenphotos/static/css/main.1a43fd26.css",
-    "main.js": "/oxygenphotos/static/js/main.0116f1bb.js",
+    "main.js": "/oxygenphotos/static/js/main.57fed406.js",
     "static/media/fotoperfil.jpg": "/oxygenphotos/static/media/fotoperfil.aff419f5cfe508b4068e.jpg",
     "index.html": "/oxygenphotos/index.html",
     "main.1a43fd26.css.map": "/oxygenphotos/static/css/main.1a43fd26.css.map",
-    "main.0116f1bb.js.map": "/oxygenphotos/static/js/main.0116f1bb.js.map"
+    "main.57fed406.js.map": "/oxygenphotos/static/js/main.57fed406.js.map"
   },
   "entrypoints": [
     "static/css/main.1a43fd26.css",
-    "static/js/main.0116f1bb.js"
+    "static/js/main.57fed406.js"
   ]
 }
