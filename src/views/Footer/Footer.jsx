@@ -13,7 +13,13 @@ function Footer() {
   const location = useLocation();
   const isFavoritesEmpty = !favorites || favorites.length === 0;
  
-
+  const linkStyle = {
+    textDecoration: 'none',
+    color: 'white',
+    display: 'flex',
+    alignItems: 'center',
+    gap:"15px"
+  };
 
 
   return (
@@ -37,22 +43,35 @@ function Footer() {
           justifyContent: "space-between",
           borderTop: "solid white 1px",
           paddingTop:"5px",
+          
         }}
       >
+        <Box>
         <Typography>
-          <a href="mailto:jotarodriguez@gmail.com">
-            <BsFillEnvelopeAtFill /> jotarodriguez@gmail.com
+          <a style={linkStyle} href="mailto:jotarodriguez@gmail.com">
+          
+            <BsFillEnvelopeAtFill />
+            
+            jotarodriguez@gmail.com
+            
+          </a>
+          </Typography>
+
+        </Box>
+        <Box sx={{display: "flex", gap:"15px"}}>
+        <Typography>
+          <a style={linkStyle} href="https://www.linkedin.com/in/jjrodriguez81/">
+            <BsLinkedin />
           </a>
         </Typography>
 
         <Typography>
-          <a href="https://www.linkedin.com/in/jjrodriguez81/">
-            <BsLinkedin />
-          </a>{" "}
-          <a href="https://www.instagram.com/jeijeiok/">
+          <a style={linkStyle} href="https://www.instagram.com/jeijeiok/">
             <BsInstagram />
           </a>
         </Typography>
+
+        </Box>
       </Container>
     </Box>
   );
