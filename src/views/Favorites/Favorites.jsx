@@ -17,6 +17,12 @@ import Search from "./Search.jsx";
 
 function Favorites() {
   const favorites = useSelector((state) => state.favorites.favorites);
+  const location = useLocation();
+  const [editingId, setEditingId] = useState(null);
+  const [editedDescription, setEditedDescription] = useState("");
+   
+  // Modal state
+  const [open, setOpen] = useState(false);
   const searchedDescription = useSelector(
     (state) => state.favorites.searchDescription
   );
@@ -34,12 +40,6 @@ function Favorites() {
       setSearchedfavorites(favorites);
     }
   }, [searchedDescription, favorites]);
-
-  const location = useLocation();
-  const [editingId, setEditingId] = useState(null);
-  const [editedDescription, setEditedDescription] = useState("");
-  // Modal state
-  const [open, setOpen] = useState(false);
 
   const handleEditButtonClick = (photoId, description) => {
     setEditingId(photoId);
@@ -105,29 +105,50 @@ function Favorites() {
                 location={location}
               />
               <Box>
-                <TextField
-                  style={{ display: "block", width: "100%" }}
+                <Box>
+                  {editingId === e.id ? (
+                    <Typography sx={{ maxWidth: "294px" }}>
+                      {editedDescription}
+                    </Typography>
+                  ) : (
+                    <Typography sx={{ maxWidth: "294px" }}>
+                      {e.description}
+                    </Typography>
+                  )}
+                </Box>
+                {/* <TextField 
+                  style={{ display: "block", width: "294px", border:"solid" }}
                   type="text"
                   placeholder={e.description}
                   value={editedDescription}
                   onChange={(e) => setEditedDescription(e.target.value)}
-                />
+                /> */}
                 <Button
                   onClick={() => handleEditButtonClick(e.id, e.description)}
                 >
-                  edit
+                  edit description
                 </Button>
                 <Typography>Width: {e.width}</Typography>
                 <Typography>Height: {e.height}</Typography>
                 <Typography>Likes: {e.likes}</Typography>
-                <Typography>Date added: {e.added}</Typography>
+                <Typography>
+                  Date added: {new Date(e.added).toLocaleDateString()}
+                </Typography>
               </Box>
             </Box>
           ))}
         </Box>
       )}
       {searchedDescription.length > 0 && (
-        <Button onClick={handleResetSearch}>Back to Favorites</Button>
+        <Box sx={{ textAlign: "center" }}>
+          <Button
+            onClick={handleResetSearch}
+            variant="contained"
+            sx={{ width: "150px" }}
+          >
+            Go Back
+          </Button>
+        </Box>
       )}
       <Modal
         open={open}

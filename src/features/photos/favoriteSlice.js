@@ -53,6 +53,7 @@ export const favoriteSlice = createSlice({
     deleteFavorites: (state, action) => {
       const photoId = action.payload;
       state.favorites = state.favorites.filter((photo) => photo.id !== photoId);
+      state.searchDescription = state.searchDescription.filter((photo)=>photo.id !==photoId);
     },
     updateFavorite: (state, action) => {
       const { photoId, updatedPhoto, favorites } = action.payload;
@@ -62,7 +63,22 @@ export const favoriteSlice = createSlice({
           ...state.favorites[photoIndex],
           ...updatedPhoto,
         };
+        const searchIndex = state.searchDescription.findIndex(
+          (photo) => photo.id === photoId
+        );
+        
+        if(state.searchDescription.length !== 0)
+        if (
+          searchIndex === -1 ||
+          state.searchDescription[searchIndex].description !== updatedPhoto.description  
+        ) {
+          state.searchDescription = [
+            ...state.searchDescription.filter((photo) => photo.id !== photoId),
+            updatedPhoto,
+          ];
+        }
       }
+      
     },
     orderFavorites: (state, action) => {
       const order = action.payload;
@@ -71,7 +87,11 @@ export const favoriteSlice = createSlice({
         //    state.favorites = state;
         //   break;
         case "Width":
+          
           state.favorites.sort((a, b) =>
+            (a.width?.toString() || "").localeCompare(b.width?.toString() || "")
+          );
+          state.searchDescription.sort((a, b) =>
             (a.width?.toString() || "").localeCompare(b.width?.toString() || "")
           );
           break;
@@ -81,13 +101,24 @@ export const favoriteSlice = createSlice({
               b.height?.toString() || ""
             )
           );
+          state.searchDescription.sort((a, b) =>
+            (a.height?.toString() || "").localeCompare(
+              b.height?.toString() || ""
+            )
+          );
           break;
         case "Likes":
-          state.favorites.sort((a, b) =>
+          state.searchDescription.sort((a, b) =>
+            (a.likes?.toString() || "").localeCompare(b.likes?.toString() || "")
+          );
+        state.favorites.sort((a, b) =>
             (a.likes?.toString() || "").localeCompare(b.likes?.toString() || "")
           );
           break;
         case "Added":
+          state.searchDescription.sort((a, b) =>
+            (a.added?.toString() || "").localeCompare(b.added?.toString() || "")
+          );
           state.favorites.sort((a, b) =>
             (a.added?.toString() || "").localeCompare(b.added?.toString() || "")
           );
@@ -99,7 +130,13 @@ export const favoriteSlice = createSlice({
     // Filter favorites based on the description containing the search query
     searchDescription: (state, action) => {
       let search = action.payload;
+      if(search.length === 0){
+        state.sd = false
+        state.searchDescription = search;
+      }else{
       state.searchDescription = search;
+      state.sd = true;
+      }
     },
   },
 });

@@ -3,7 +3,6 @@ import React from "react";
 import Card from "../Card/Card";
 import { useLocation } from "react-router-dom";
 import styles from "./Cards.module.css";
-//import { BsFillCaretRightFill, BsFillCaretLeftFill } from "react-icons/bs";
 import { Box, ImageList } from "@mui/material";
 import Favorites from "../../views/Favorites/Favorites";
 

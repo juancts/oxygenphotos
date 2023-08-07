@@ -3,10 +3,19 @@ import { AppBar, Box, Toolbar, Typography, Button, List, ListItem, ListItemText,
 //import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import {GiHamburgerMenu} from "react-icons/gi";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { searchDescription } from "../../features/photos/favoriteSlice";
 
 function NavBar() {
 
-  
+
+const dispatch = useDispatch();  
+const handleResetSearch = ()=>{
+  dispatch(searchDescription([]));
+}
+
+
+
 const [open, setOpen] = useState(false);
 
 
@@ -88,7 +97,7 @@ const list = () => (
               <Button sx={{ color: "white" }}>Inicio</Button>
             </NavLink>
             <NavLink to="/favorites">
-              <Button sx={{ color: "white" }}>My photos</Button>
+              <Button onClick={handleResetSearch} sx={{ color: "white" }}>My photos</Button>
             </NavLink>
             <NavLink to="/about">
               <Button sx={{ color: "white" }}>About</Button>

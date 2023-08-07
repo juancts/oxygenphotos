@@ -15,14 +15,14 @@ function Order() {
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
-      <Typography>Order By</Typography>
+      <Typography>Order Ascendent</Typography>
       <Select
         value={type}
         onChange={handleChange}
         sx={{ width: "300px" }}
         id=""
       >
-        <MenuItem value="Options">Options</MenuItem>
+        <MenuItem value="Options">Order By</MenuItem>
         <MenuItem value="Width">Width</MenuItem>
         <MenuItem value="Height">Height</MenuItem>
         <MenuItem value="Likes">Likes</MenuItem>

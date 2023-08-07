@@ -29,9 +29,9 @@ function Card(props) {
     const downloadLink = document.createElement("a");
     downloadLink.href = props.download.split("?")[0].concat(`?force=true?ixit=${photos_access_key}`);
     downloadLink.setAttribute("download", "myphoto.jpg");
-    document.body.appendChild(downloadLink);
+    //document.body.appendChild(downloadLink);
     downloadLink.click();
-    document.body.removeChild(downloadLink);
+    //document.body.removeChild(downloadLink);
   }
 
 
